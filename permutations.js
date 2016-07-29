@@ -7,7 +7,7 @@ function permutations(chars) {
   var perm = [],
     words = [],
     firstChar;
-  if (chars.length === 1) { // base case
+  if (chars.length === 1) {
     perm.push(chars);
     return perm;
   }
@@ -21,4 +21,18 @@ function permutations(chars) {
     }
   }
   return perm;
+}
+
+function permutations2(string) {
+  var arr = string.split(''), tmp = arr.slice(), heads = [], out = [];
+  if(string.length == 1) return [string];
+  arr.forEach(function(v, i, arr) {
+    if(heads.indexOf(v) == -1) {
+      heads.push(v);
+      tmp.splice(tmp.indexOf(v), 1);
+      permutations2(tmp.join('')).forEach(function(w) {out.push(v + w);});
+      tmp.push(v);
+    }
+  });
+  return out;
 }
