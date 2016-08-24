@@ -1,16 +1,12 @@
 function pickPeaks(arr){
-  console.log(arr);
   var obj = {};
   var peakArr = [];
   var peakIndexArr = [];
   for (var i = 0; i < arr.length; i++) {
-    for (var j = i + 1; j < arr.length; j++) {
-      if (arr[j] < arr[i]) {
-        var extraArr = [];
-        extraArr.push(arr[j]);
-        console.log(extraArr);
-      }
-      if(arr[i] > arr[i - 1] && arr[i] >= arr[i + 1] && arr.indexOf(arr[i]) != (0 || arr.length)) {
+    if(arr[i] > arr[i - 1] && arr[i] >= arr[i + 1] && arr[i] >= arr[i + 2] && arr.indexOf(arr[i]) != (0 || arr.length)) {
+      var newArr = arr.slice(i, arr.length + 1);
+      var min = Math.min.apply(null, newArr);
+      if (min != arr[i]) {
         peakArr.push(arr[i]);
         peakIndexArr.push(i);
       }
