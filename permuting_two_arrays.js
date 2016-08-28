@@ -1,57 +1,102 @@
 function processData(input) {
   var split = input.split('\n');
   var queryNum = split.shift();
-  var firstHalf = split.slice(0, split.length / queryNum);
-  var firstRelation = Number(firstHalf[0].split(' ')[1]);
-  var firstHalfReady = firstHalf.shift();
-  var arr = [];
-  for (var i = 0; i < firstHalf.length; i++) {
-    var newArr = firstHalf[i].split(' ');
-    var mapped = newArr.map(function(string) {
-      return Number(string);
-    });
-    arr.push(mapped);
-  }
-  var firstFirst = arr[0];
-  var firstSecond = arr[1];
-
-  var combos = [];
-
-  for (var k = 0; k < firstFirst.length; k++) {
-    for (var j = 0; j < firstSecond.length; j++) {
-      combos.push(firstFirst[k] + firstSecond[j]);
+  for (var o = 0; o < queryNum; o++) {
+    var spliced = split.splice(0, 3);
+    var charLength = Number(spliced[0].split(' ')[0]);
+    var relation = Number(spliced[0].split(' ')[1]);
+    var firstIndexRemoved = spliced.shift();
+    var arr = [];
+    for (var i = 0; i < spliced.length; i++) {
+      var newArr = spliced[i].split(' ');
+      var mapped = newArr.map(function(string) {
+        return Number(string);
+      });
+      arr.push(mapped);
     }
-  }
-  if (combos.indexOf(firstRelation) !== -1) {
-    console.log('YES');
-  } else {
-    console.log('NO');
-  }
+    var firstFirst = arr[0];
+    var firstSecond = arr[1];
 
-  var secondHalf = split.slice(split.length / queryNum, split.length);
-  var secondRelation = secondHalf[0].split(' ')[1];
-  var secondHalfReady = secondHalf.shift();
-  var secondArr = [];
-  for (var l = 0; l < secondHalf.length; l++) {
-    var newArrSecond = secondHalf[l].split(' ');
-    var mappedSecond = newArrSecond.map(function(string) {
-      return Number(string);
-    });
-    secondArr.push(mappedSecond);
-  }
-  var secondFirst = secondArr[0];
-  var secondSecond = secondArr[1];
 
-  var combosSecond = [];
+    var permArr = [];
+    var usedChars = [];
 
-  for (var m = 0; m < secondFirst.length; m++) {
-    for (var n = 0; n < secondSecond.length; n++) {
-      combosSecond.push(secondFirst[m] + secondSecond[n]);
+
+    function permute(input) {
+
+      var i, ch;
+      for (i = 0; i < input.length; i++) {
+        ch = input.splice(i, 1)[0];
+        usedChars.push(ch);
+        if (input.length == 0) {
+          permArr.push(usedChars.slice());
+        }
+        permute(input);
+        input.splice(i, 0, ch);
+        usedChars.pop();
+      }
+      return permArr;
+    };
+
+    var A = permute(firstFirst);
+    console.log(A, 'A');
+
+    var permArrAgain = [];
+    var usedCharsAgain = [];
+
+
+    function permuteAgain(input) {
+
+      var i, ch;
+      for (i = 0; i < input.length; i++) {
+        ch = input.splice(i, 1)[0];
+        usedCharsAgain.push(ch);
+        if (input.length == 0) {
+          permArrAgain.push(usedCharsAgain.slice());
+        }
+        permuteAgain(input);
+        input.splice(i, 0, ch);
+        usedCharsAgain.pop();
+      }
+      return permArrAgain;
     }
-  }
-  if (combosSecond.indexOf(secondRelation) !== -1) {
-    console.log('YES');
-  } else {
-    console.log('NO');
+
+    var B = permuteAgain(firstSecond);
+    console.log(B, 'B');
+
+    var submitArr = [0];
+
+    function countInArray(array, what) {
+      var count = 0;
+      for (var i = 0; i < array.length; i++) {
+        if (array[i] === what) {
+          count++;
+        }
+      }
+      return count;
+    }
+
+    function compare(array1, array2) {
+
+      for (var j = 0; j < array1.length; j++) {
+        for (var k = 0; k < array1[j].length; k++) {
+          for (var l = 0; l < array2.length; l++) {
+            for (var m = 0; m < array2[l].length; m++) {
+              for (var n = 1; n < length.length + 1; n++) {
+                if (array1[j][k] + array2[l][m] === relation) {
+                  submitArr.push(array1[j][k], array2[l][m]);
+                  array1[j].shift();
+                  array2[l].shift();
+                  compare(array1, array2);
+                }
+              }
+            }
+          }
+        }
+      }
+      return submitArr;
+    }
+
+    compare(A, B);
   }
 }
