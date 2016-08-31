@@ -7,3 +7,8 @@ function maskify(cc) {
   var joined = split.join('');
   return joined;
 }
+//top solution
+
+function maskify(cc) {
+  return cc.slice(0, -4).replace(/./g, '#') + cc.slice(-4);
+}
