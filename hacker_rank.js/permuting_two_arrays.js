@@ -100,3 +100,37 @@ function processData(input) {
     compare(A, B);
   }
 }
+
+//second solution
+
+function processData(input) {
+  var split = input.split('\n');
+  var q = Number(split.shift());
+  for (var i = 0; i < q; i++) {
+    var query = split.splice(0, 3);
+    var firstLine = query[0].split(' ').map(function(string) {
+      return Number(string);
+    });
+    var n = firstLine[0];
+    var k = firstLine[1];
+    var a = query[1].split(' ').map(function(string) {
+      return Number(string);
+    }).sort(function(a, b) {
+      return a - b;
+    });
+    var b = query[2].split(' ').map(function(string) {
+      return Number(string);
+    }).sort(function(a, b) {
+      return b - a;
+    });
+    var count = 0;
+    for (var j = 0; j < n; j++) {
+      if (a[j] + b[j] >= k) count++;
+    }
+    if (count === n) {
+      console.log('YES');
+    } else {
+      console.log('NO');
+    }
+  }
+}
