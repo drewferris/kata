@@ -35,3 +35,7 @@ var findIntersection = function(rec1, rec2) {
 var something = findIntersection(A,B);
 
 console.log(something);
+
+
+// console.log('yCutCost', yCutCost, 'xCutCost', xCutCost);
+// console.log('yArr', yArr, 'xArr', xArr, 'ySegmentCuts', ySegmentCuts, 'xSegmentCuts', xSegmentCuts, 'total', total);
