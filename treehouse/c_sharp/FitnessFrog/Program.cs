@@ -1,13 +1,16 @@
 using System;
 
-class Program
+namespace Treehouse.FitnessFrog
 {
-
-  static void Main()
+  class Program
   {
-    System.Console.Write("Enter how many minutes you exercised: ");
-    string entry = System.Console.ReadLine();
+
+    static void Main()
+    {
+      Console.Write("Enter how many minutes you exercised: ");
+      string entry = Console.ReadLine();
+
+    }
 
   }
-
 }
