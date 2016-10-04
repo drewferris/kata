@@ -1,4 +1,4 @@
-//solution found on leaderboard 
+//solution found on leaderboard
 
 import java.io.*;
 import java.util.*;
@@ -15,6 +15,7 @@ public class Solution {
 		Map<Character, Integer> freq = new HashMap<>();
 		for (int i = 0; i < data.length(); i++)
 		{
+      System.out.println(data.length());
 			freq.put(data.charAt(i), 1);
 		}
       //System.out.println(freq);
