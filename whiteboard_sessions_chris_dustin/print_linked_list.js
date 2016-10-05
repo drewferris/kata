@@ -30,7 +30,7 @@
 var ll = {
   val: 'a',
   next: {
-    val: 'b',
+    val: 'd',
     next: {
       val: 'c',
       next: {
@@ -47,6 +47,36 @@ var ll = {
   }
 };
 
+//function to delete node in LinkedList given node and val
+
+function deleteNode(node, value) {
+  if (node.next !== null) {
+    if (node.val !== value) {
+      deleteNode(node.next, value);
+    } else if (node.val === value) {
+      // console.log(node);
+      node.val = node.next;
+      // node.next = null;
+      deleteNode(node.val, value);
+    }
+  } else {
+    return;
+  }
+}
+
+function printLinked(node) {
+  if (node.next !== null) {
+    console.log(node.val, "VAL");
+    printLinked(node.next);
+  }
+}
+
+printLinked(ll);
+deleteNode(ll, 'd');
+printLinked(ll);
+
+
+console.log(ll);
 function AppendLL(list, val) {
   var item = list
   var newItem = {
@@ -60,7 +90,7 @@ function AppendLL(list, val) {
   item.next = newItem
   return list;
 }
-console.log('before', ll);
+// console.log('before', ll);
 
 function addToPoint(list, val, pos) {
   var count = 0;
@@ -101,16 +131,16 @@ function addToPoint(list, val, pos) {
 //   traverse(list);
 //   return list;
 // }
-function deleteNode(list, pos) {
-  var count = 0;
-  while(list.next !== null) {
-    count ++;
-    if (count === pos) {
-      console.log(count, 'count');
-    }
-  }
-}
+// function deleteNode(list, pos) {
+//   var count = 0;
+//   while(list.next !== null) {
+//     count ++;
+//     if (count === pos) {
+//       console.log(count, 'count');
+//     }
+//   }
+// }
 
-deleteNode(ll, 1);
-
-console.log('after', ll);
+// deleteNode(ll, 1);
+//
+// console.log('after', ll);
