@@ -17,3 +17,4 @@ function viralAd(number) {
 }
 
 console.log(viralAd(3));
+console.log('hek');
