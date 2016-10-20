@@ -8,6 +8,7 @@ function returnGemsEls(array, k) {
   for(var i = 0; i < array.length; i++) {
     for(var j = 0; j < array[i].length; j++) {
       if(elementsArr.indexOf(array[i][j]) === -1) {
+        debugger;
         elementsArr.push(array[i][j]);
       }
     }
