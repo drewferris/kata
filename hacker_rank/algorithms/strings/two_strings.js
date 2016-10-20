@@ -135,3 +135,54 @@ function getAlt(string) {
 }
 
 console.log(getAlt(testString));
+
+//better one found on leaderboard
+
+function removeCharacter(s, character) {
+  let regex = new RegExp(character, 'g');
+  return s.replace(regex, '');
+}
+
+function removeConsecutives(s) {
+  let prevCharacter = '';
+  for(let i = 0; i < s.length; i++) {
+    if(s[i] === prevCharacter) {
+      s = removeCharacter(s, s[i]);
+      return removeConsecutives(s);
+    } else {
+      prevCharacter = s[i];
+    }
+  }
+  return s;
+}
+
+function main() {
+  let len = parseInt(readLine());
+  let s = readLine();
+
+  let optimizedString = removeConsecutives(s);
+  let uniqueCharacters = [];
+
+  for(let i = 0; i < optimizedString.length; i++) {
+    if(!uniqueCharacters.includes(optimizedString[i])) {
+      uniqueCharacters.push(optimizedString[i]);
+    }
+  }
+
+  let longestString = '';
+  for(let firstCharPos = 0; firstCharPos < uniqueCharacters.length -1; firstCharPos++) {
+    for(let secondCharPos = firstCharPos + 1; secondCharPos < uniqueCharacters.length; secondCharPos++) {
+      let trialString = optimizedString;
+      uniqueCharacters.forEach((v, i) => {
+        if(i !== firstCharPos && i !== secondCharPos) {
+          trialString = removeCharacter(trialString, v);
+        }
+      });
+      trialString = removeConsecutives(trialString);
+      if(trialString.length > longestString.length) {
+        longestString = trialString;
+      }
+    }
+  }
+  console.log(longestString.length);
+}
