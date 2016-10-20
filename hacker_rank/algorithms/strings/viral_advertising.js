@@ -4,6 +4,7 @@ function viralAd(number) {
   var advertisedTo;
   var nextTotal = 0;
   for(var i = 0; i < number; i++) {
+    debugger;
     if(i === 0) {
       m = 5;
     } else {
