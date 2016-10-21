@@ -69,6 +69,7 @@ function printLL(ll) {
       break;
     }
   }
+  return ll;
 }
 
 var list = new LinkedList();
@@ -79,7 +80,7 @@ list.add('c');
 list.add('d');
 list.add('e');
 list.add('f');
-// addToTail(list, 'g');
+addToTail(list, 'g');
 
 
 debugger;
