@@ -278,6 +278,25 @@ function compare(ll1, ll2) {
   return true;
 }
 
+LinkedList.prototype.compare = function (list) {
+  var node1 = this._head;
+  var node2 = list._head;
+
+  while(node1.data !== null && node2.data !== null) {
+    if(node1.data !== node2.data) {
+      return false;
+    }
+    if(node1.next !== null && node2.next !== null) {
+      node1 = node1.next;
+      node2 = node2.next;
+    } else {
+      break;
+    }
+  }
+  if(node1.next !== null || node2.next !== null) return false;
+  return true;
+};
+
 var list = new LinkedList();
 var list2 = new LinkedList();
 
@@ -293,8 +312,7 @@ list2.add('b');
 list2.add('c');
 list2.add('d');
 list2.add('e');
-list2.add('f');
 
 
-compare(list, list2);
+list.compare(list2);
 debugger;
