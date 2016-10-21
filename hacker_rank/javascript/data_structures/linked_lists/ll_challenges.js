@@ -177,6 +177,40 @@ LinkedList.prototype.deleteNode = function (position) {
   }
 };
 
+function printReverse(ll) {
+  var node = ll._head;
+  var dataList = [];
+  while(node.data !== null) {
+    dataList.push(node.data);
+    if(node.next !== null) {
+      node = node.next;
+    } else {
+      break;
+    }
+  }
+  var reversed = dataList.reverse();
+  for(var i = 0; i < reversed.length; i++) {
+    console.log(reversed[i]);
+  }
+}
+
+LinkedList.prototype.printReverse = function () {
+  var node = this._head;
+  var dataList = [];
+  while(node.data !== null) {
+    dataList.push(node.data);
+    if(node.next !== null) {
+      node = node.next;
+    } else {
+      break;
+    }
+  }
+  var reversed = dataList.reverse();
+  for(var i = 0; i < reversed.length; i++) {
+    console.log(reversed[i]);
+  }
+};
+
 var list = new LinkedList();
 
 list.add('a');
@@ -185,5 +219,5 @@ list.add('c');
 list.add('d');
 list.add('e');
 list.add('f');
-list.deleteNode(3);
+list.printReverse();
 debugger;
