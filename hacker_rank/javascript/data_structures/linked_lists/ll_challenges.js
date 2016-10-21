@@ -211,6 +211,54 @@ LinkedList.prototype.printReverse = function () {
   }
 };
 
+function reverseLL(ll) {
+  var node = ll._head;
+  var dataList = [];
+  while(node.data !== null) {
+    dataList.push(node.data);
+    if(node.next !== null) {
+      node = node.next;
+    } else {
+      break;
+    }
+  }
+  var reversed = dataList.reverse();
+  node = ll._head;
+  var count = 0;
+  while(node.data !== null) {
+    node.data = reversed[count];
+    count++;
+    if(node.next !== null) {
+      node = node.next;
+    } else {
+      break;
+    }
+  }
+}
+
+LinkedList.prototype.reverse = function () {
+  if(this._head === null) {
+    return null;
+  }
+  if(this._head.next === null) {
+    return this._head;
+  }
+  var next = this._head.next;
+  var prev = null;
+  var curr = this._head;
+
+
+  while(next !== null) {
+    curr.next = prev;
+    prev = curr;
+    curr = next;
+    next = next.next;
+  }
+
+  curr.next = prev;
+  this._head = curr;
+};
+
 var list = new LinkedList();
 
 list.add('a');
@@ -219,5 +267,5 @@ list.add('c');
 list.add('d');
 list.add('e');
 list.add('f');
-list.printReverse();
+list.reverse();
 debugger;
