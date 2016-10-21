@@ -99,6 +99,44 @@ LinkedList.prototype.insertToHead = function (data) {
       next: this._head
     };
   }
+}
+
+function insertNode(ll, data, position) {
+  var count = 0;
+  var node = ll._head;
+  while(node.data !== null) {
+    count++;
+    if(count === position - 1) {
+      node.next = {
+        data: data,
+        next: node.next
+      };
+    }
+    if (node.next !== null) {
+      node = node.next;
+    } else {
+      break;
+    }
+  }
+}
+
+LinkedList.prototype.insertNode = function (data, position) {
+  var count = 0;
+  var node = this._head;
+  while(node.data !== null) {
+    count++;
+    if(count === position - 1) {
+      node.next = {
+        data: data,
+        next: node.next
+      };
+    }
+    if(node.next !== null) {
+      node = node.next;
+    } else {
+      break;
+    }
+  }
 };
 
 var list = new LinkedList();
@@ -109,6 +147,5 @@ list.add('c');
 list.add('d');
 list.add('e');
 list.add('f');
-list.insertToHead('0');
-
+list.insertNode('inserted', 3);
 debugger;
