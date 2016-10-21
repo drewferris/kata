@@ -72,6 +72,35 @@ function printLL(ll) {
   return ll;
 }
 
+function insertToHead(ll, data) {
+  if(ll._head === null) {
+    ll._head = {
+      data: data,
+      next: null
+    };
+  } else {
+    ll._head = {
+      data: data,
+      next: ll._head
+    };
+  }
+  return ll;
+}
+
+LinkedList.prototype.insertToHead = function (data) {
+  if(this._head === null) {
+    this._head = {
+      data: data,
+      next: null
+    };
+  } else {
+    this._head = {
+      data: data,
+      next: this._head
+    };
+  }
+};
+
 var list = new LinkedList();
 
 list.add('a');
@@ -80,7 +109,6 @@ list.add('c');
 list.add('d');
 list.add('e');
 list.add('f');
-addToTail(list, 'g');
-
+list.insertToHead('0');
 
 debugger;
