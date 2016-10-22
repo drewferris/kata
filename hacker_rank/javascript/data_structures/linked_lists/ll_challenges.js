@@ -29,7 +29,7 @@ function addToTail(ll, data) {
       next: null
     },
     current;
-  if(ll._head === null) {
+  if (ll._head === null) {
     ll._head = node;
   } else {
     current = ll._head;
@@ -73,7 +73,7 @@ function printLL(ll) {
 }
 
 function insertToHead(ll, data) {
-  if(ll._head === null) {
+  if (ll._head === null) {
     ll._head = {
       data: data,
       next: null
@@ -87,8 +87,8 @@ function insertToHead(ll, data) {
   return ll;
 }
 
-LinkedList.prototype.insertToHead = function (data) {
-  if(this._head === null) {
+LinkedList.prototype.insertToHead = function(data) {
+  if (this._head === null) {
     this._head = {
       data: data,
       next: null
@@ -104,9 +104,9 @@ LinkedList.prototype.insertToHead = function (data) {
 function insertNode(ll, data, position) {
   var count = 0;
   var node = ll._head;
-  while(node.data !== null) {
+  while (node.data !== null) {
     count++;
-    if(count === position - 1) {
+    if (count === position - 1) {
       node.next = {
         data: data,
         next: node.next
@@ -120,18 +120,18 @@ function insertNode(ll, data, position) {
   }
 }
 
-LinkedList.prototype.insertNode = function (data, position) {
+LinkedList.prototype.insertNode = function(data, position) {
   var count = 0;
   var node = this._head;
-  while(node.data !== null) {
+  while (node.data !== null) {
     count++;
-    if(count === position - 1) {
+    if (count === position - 1) {
       node.next = {
         data: data,
         next: node.next
       };
     }
-    if(node.next !== null) {
+    if (node.next !== null) {
       node = node.next;
     } else {
       break;
@@ -142,15 +142,15 @@ LinkedList.prototype.insertNode = function (data, position) {
 function deleteNode(ll, position) {
   var count = 0;
   var node = ll._head;
-  while(node.data !== null) {
+  while (node.data !== null) {
     count++;
-    if(count === position - 1) {
+    if (count === position - 1) {
       node.next = {
         data: node.next.next.data,
         next: node.next.next.next
       };
     }
-    if(node.next !== null) {
+    if (node.next !== null) {
       node = node.next;
     } else {
       break;
@@ -158,18 +158,18 @@ function deleteNode(ll, position) {
   }
 }
 
-LinkedList.prototype.deleteNode = function (position) {
+LinkedList.prototype.deleteNode = function(position) {
   var count = 0;
   var node = this._head;
-  while(node.data !== null) {
+  while (node.data !== null) {
     count++;
-    if(count === position - 1) {
+    if (count === position - 1) {
       node.next = {
         data: node.next.next.data,
         next: node.next.next.next
       };
     }
-    if(node.next !== null) {
+    if (node.next !== null) {
       node = node.next;
     } else {
       break;
@@ -180,33 +180,33 @@ LinkedList.prototype.deleteNode = function (position) {
 function printReverse(ll) {
   var node = ll._head;
   var dataList = [];
-  while(node.data !== null) {
+  while (node.data !== null) {
     dataList.push(node.data);
-    if(node.next !== null) {
+    if (node.next !== null) {
       node = node.next;
     } else {
       break;
     }
   }
   var reversed = dataList.reverse();
-  for(var i = 0; i < reversed.length; i++) {
+  for (var i = 0; i < reversed.length; i++) {
     console.log(reversed[i]);
   }
 }
 
-LinkedList.prototype.printReverse = function () {
+LinkedList.prototype.printReverse = function() {
   var node = this._head;
   var dataList = [];
-  while(node.data !== null) {
+  while (node.data !== null) {
     dataList.push(node.data);
-    if(node.next !== null) {
+    if (node.next !== null) {
       node = node.next;
     } else {
       break;
     }
   }
   var reversed = dataList.reverse();
-  for(var i = 0; i < reversed.length; i++) {
+  for (var i = 0; i < reversed.length; i++) {
     console.log(reversed[i]);
   }
 };
@@ -214,9 +214,9 @@ LinkedList.prototype.printReverse = function () {
 function reverseLL(ll) {
   var node = ll._head;
   var dataList = [];
-  while(node.data !== null) {
+  while (node.data !== null) {
     dataList.push(node.data);
-    if(node.next !== null) {
+    if (node.next !== null) {
       node = node.next;
     } else {
       break;
@@ -225,10 +225,10 @@ function reverseLL(ll) {
   var reversed = dataList.reverse();
   node = ll._head;
   var count = 0;
-  while(node.data !== null) {
+  while (node.data !== null) {
     node.data = reversed[count];
     count++;
-    if(node.next !== null) {
+    if (node.next !== null) {
       node = node.next;
     } else {
       break;
@@ -236,11 +236,11 @@ function reverseLL(ll) {
   }
 }
 
-LinkedList.prototype.reverse = function () {
-  if(this._head === null) {
+LinkedList.prototype.reverse = function() {
+  if (this._head === null) {
     return null;
   }
-  if(this._head.next === null) {
+  if (this._head.next === null) {
     return this._head;
   }
   var next = this._head.next;
@@ -248,7 +248,7 @@ LinkedList.prototype.reverse = function () {
   var curr = this._head;
 
 
-  while(next !== null) {
+  while (next !== null) {
     curr.next = prev;
     prev = curr;
     curr = next;
@@ -263,56 +263,89 @@ function compare(ll1, ll2) {
   var node1 = ll1._head;
   var node2 = ll2._head;
 
-  while(node1.data !== null && node2.data !== null) {
-    if(node1.data !== node2.data) {
+  while (node1.data !== null && node2.data !== null) {
+    if (node1.data !== node2.data) {
       return false;
     }
-    if(node1.next !== null && node2.next !== null) {
+    if (node1.next !== null && node2.next !== null) {
       node1 = node1.next;
       node2 = node2.next;
     } else {
       break;
     }
   }
-  if(node1.next !== null || node2.next !== null) return false;
+  if (node1.next !== null || node2.next !== null) return false;
   return true;
 }
 
-LinkedList.prototype.compare = function (list) {
+LinkedList.prototype.compare = function(list) {
   var node1 = this._head;
   var node2 = list._head;
 
-  while(node1.data !== null && node2.data !== null) {
-    if(node1.data !== node2.data) {
+  while (node1.data !== null && node2.data !== null) {
+    if (node1.data !== node2.data) {
       return false;
     }
-    if(node1.next !== null && node2.next !== null) {
+    if (node1.next !== null && node2.next !== null) {
       node1 = node1.next;
       node2 = node2.next;
     } else {
       break;
     }
   }
-  if(node1.next !== null || node2.next !== null) return false;
+  if (node1.next !== null || node2.next !== null) return false;
   return true;
 };
+
+function merge(ll1, ll2) {
+  var node1 = ll1._head;
+  var node2 = ll2._head;
+  var count = 0;
+  var mergeArr = [];
+
+  while (node1.data !== null && node2.data !== null) {
+    mergeArr.push(node1.data, node2.data);
+    if (node1.next !== null && node2.next !== null) {
+      node1 = node1.next;
+      node2 = node2.next;
+    } else {
+      break;
+    }
+  }
+  var returnList = {
+    _head: {
+      data: mergeArr.shift(),
+      next: null
+    }
+  };
+  var node = returnList._head;
+  while(mergeArr.length !== 0) {
+    node.next = {
+      data: mergeArr.shift(),
+      next: null
+    };
+    node = node.next;
+  }
+  return returnList;
+}
 
 var list = new LinkedList();
 var list2 = new LinkedList();
 
 list.add('a');
-list.add('b');
 list.add('c');
-list.add('d');
 list.add('e');
-list.add('f');
+list.add('g');
+list.add('i');
+list.add('k');
 
-list2.add('a');
 list2.add('b');
-list2.add('c');
 list2.add('d');
-list2.add('e');
+list2.add('f');
+list2.add('h');
+list2.add('j');
+list2.add('l');
 
 
-list.compare(list2);
+var newL = merge(list, list2);
 debugger;
