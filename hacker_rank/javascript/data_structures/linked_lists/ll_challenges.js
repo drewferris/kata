@@ -329,6 +329,36 @@ function merge(ll1, ll2) {
   return returnList;
 }
 
+function mergeProper(list1, list2) {
+  var node1 = list1._head;
+  var node2 = list2._head;
+  var dummy = {
+    data: 0,
+    next: 0
+  };
+
+  var temp = dummy;
+
+  while (temp.next !== null) {
+    if(node1 === null) {
+      temp.next = node2;
+      break;
+    } else if (node2 === null) {
+      temp.next = node1;
+      break;
+    } else if(node1.data < node2.data) {
+      temp.next = node1;
+      node1 = node1.next;
+    } else {
+      temp.next = node2;
+      node2 = node2.next;
+    }
+    temp = temp.next;
+  }
+  return dummy.next;
+}
+
+
 var list = new LinkedList();
 var list2 = new LinkedList();
 
@@ -346,6 +376,6 @@ list2.add('h');
 list2.add('j');
 list2.add('l');
 
+var merged = mergeProper(list, list2);
 
-var newL = merge(list, list2);
 debugger;
