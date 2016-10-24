@@ -358,6 +358,40 @@ function mergeProper(list1, list2) {
   return dummy.next;
 }
 
+function getNode(list, k) {
+  var node = list._head;
+  var valArr = [];
+  while(node.data !==null) {
+    valArr.push(node.data);
+    if (node.next !== null) {
+      node = node.next;
+    } else {
+      break;
+    }
+  }
+  return valArr[valArr.length - 1 - k];
+}
+
+function getNodeAgain(list, k) {
+  var node = list._head;
+  if(node.next === null) {
+    return node.data;
+  }
+  var count = 0;
+  while(node !== null) {
+    count++;
+    node = node.next;
+  }
+
+  var n = count - k - 1;
+  node = list._head;
+  while(n>0) {
+    n--;
+    node = node.next;
+  }
+  return node.data;
+}
+
 
 var list = new LinkedList();
 var list2 = new LinkedList();
@@ -376,6 +410,5 @@ list2.add('h');
 list2.add('j');
 list2.add('l');
 
-var merged = mergeProper(list, list2);
 
 debugger;
