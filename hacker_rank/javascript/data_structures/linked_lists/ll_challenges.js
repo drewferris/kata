@@ -319,7 +319,7 @@ function merge(ll1, ll2) {
     }
   };
   var node = returnList._head;
-  while(mergeArr.length !== 0) {
+  while (mergeArr.length !== 0) {
     node.next = {
       data: mergeArr.shift(),
       next: null
@@ -340,13 +340,13 @@ function mergeProper(list1, list2) {
   var temp = dummy;
 
   while (temp.next !== null) {
-    if(node1 === null) {
+    if (node1 === null) {
       temp.next = node2;
       break;
     } else if (node2 === null) {
       temp.next = node1;
       break;
-    } else if(node1.data < node2.data) {
+    } else if (node1.data < node2.data) {
       temp.next = node1;
       node1 = node1.next;
     } else {
@@ -361,7 +361,7 @@ function mergeProper(list1, list2) {
 function getNode(list, k) {
   var node = list._head;
   var valArr = [];
-  while(node.data !==null) {
+  while (node.data !== null) {
     valArr.push(node.data);
     if (node.next !== null) {
       node = node.next;
@@ -374,22 +374,63 @@ function getNode(list, k) {
 
 function getNodeAgain(list, k) {
   var node = list._head;
-  if(node.next === null) {
+  if (node.next === null) {
     return node.data;
   }
   var count = 0;
-  while(node !== null) {
+  while (node !== null) {
     count++;
     node = node.next;
   }
 
   var n = count - k - 1;
   node = list._head;
-  while(n>0) {
+  while (n > 0) {
     n--;
     node = node.next;
   }
   return node.data;
+}
+
+function deleteDup(list) {
+  var node = list._head;
+  var nodeArr = [];
+  while (node.next !== null) {
+    if (nodeArr.indexOf(node.next.data) === -1) {
+      nodeArr.push(node.next.data);
+    } else if(nodeArr.indexOf(node.next.data) !== -1){
+      node.next = {
+        data: node.next.next.data,
+        next: node.next.next.next
+      };
+    }
+    if (node.next !== null) {
+      node = node.next;
+    } else {
+      break;
+    }
+  }
+}
+
+function deleteProp(list) {
+  if (list._head === null) {
+    return null;
+  }
+
+  var node = list._head;
+  var temp = node.next;
+  var prev = node;
+  while(temp !== null) {
+    if(prev.data === temp.data) {
+      prev.next = temp.next;
+      temp.next = null;
+      temp = prev.next;
+    } else {
+      prev = temp;
+      temp = temp.next;
+    }
+  }
+  return list;
 }
 
 
@@ -397,11 +438,12 @@ var list = new LinkedList();
 var list2 = new LinkedList();
 
 list.add('a');
+list.add('b');
 list.add('c');
+list.add('d');
 list.add('e');
-list.add('g');
-list.add('i');
-list.add('k');
+list.add('e');
+list.add('f');
 
 list2.add('b');
 list2.add('d');
@@ -409,6 +451,8 @@ list2.add('f');
 list2.add('h');
 list2.add('j');
 list2.add('l');
+
+deleteProp(list);
 
 
 debugger;
