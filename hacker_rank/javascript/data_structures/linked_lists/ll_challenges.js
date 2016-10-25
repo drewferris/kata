@@ -398,7 +398,7 @@ function deleteDup(list) {
   while (node.next !== null) {
     if (nodeArr.indexOf(node.next.data) === -1) {
       nodeArr.push(node.next.data);
-    } else if(nodeArr.indexOf(node.next.data) !== -1){
+    } else if (nodeArr.indexOf(node.next.data) !== -1) {
       node.next = {
         data: node.next.next.data,
         next: node.next.next.next
@@ -420,9 +420,9 @@ function deleteProp(list) {
   var node = list._head;
   var temp = node.next;
   var prev = node;
-  while(temp !== null) {
+  while (temp !== null) {
     debugger;
-    if(prev.data === temp.data) {
+    if (prev.data === temp.data) {
       prev.next = temp.next;
       temp.next = null;
       temp = prev.next;
@@ -438,36 +438,96 @@ function detectLoop(list) {
   var slow = list._head;
   var fast = list._head;
 
-  while(fast !== null && fast.next !== null) {
+  while (fast !== null && fast.next !== null) {
     slow = slow.next;
     fast = fast.next.next;
 
-    if(slow === fast) {
+    if (slow === fast) {
       return true;
     }
   }
   return false;
 }
 
+function findMergePoint(list1, list2) {
+  var node1 = list1._head;
+  var node2 = list2._head;
+
+  while (node1.next !== null && node2.next !== null) {
+    if (node1.data === node2.data) {
+      return node1.data;
+    }
+    node1 = node1.next;
+    node2 = node2.next;
+  }
+}
+
+function findMergePointProper(list1, list2) {
+  var node1 = list1._head;
+  var node2 = list2._head;
+
+  var countA = 0;
+  var countB = 0;
+
+  while (node1 != null) {
+    countA++;
+    node1 = node1.next;
+  }
+
+  while (node2 != null) {
+    countB++;
+    node2 = node2.next;
+  }
+
+  var diff = 0;
+
+  if(countA>countB) {
+    diff=countA-countB;
+  } else {
+    diff=countB-countA;
+  }
+
+  node1 = list1._head;
+  node2 = list2._head;
+
+  if(countA > countB) {
+    while(diff > 0) {
+      node1 = node1.next;
+      diff--;
+    }
+  } else {
+    while(diff>0) {
+      node2 = node2.next;
+      diff--;
+    }
+  }
+
+  while(node1 !== null && node2 !== null) {
+    node1 = node1.next;
+    node2 = node2.next;
+    if(node1.data === node2.data) {
+      return node1.data;
+    }
+  }
+  return 0;
+}
 
 var list = new LinkedList();
 var list2 = new LinkedList();
 
-list.add('a');
-list.add('b');
-list.add('c');
-list.add('d');
-list.add('e');
-list.add('f');
-list.add('c');
 
-list2.add('b');
-list2.add('d');
-list2.add('f');
+list.add('c');
 list2.add('h');
-list2.add('j');
-list2.add('l');
+list.add('x');
+list.add('y');
+list.add('z');
 
-detectLoop(list);
+list2.add('g');
+list2.add('h');
+list2.add('u');
+list2.add('x');
+list2.add('y');
+list2.add('z');
 
+findMergePointProper(list, list2);
 debugger;
