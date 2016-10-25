@@ -421,6 +421,7 @@ function deleteProp(list) {
   var temp = node.next;
   var prev = node;
   while(temp !== null) {
+    debugger;
     if(prev.data === temp.data) {
       prev.next = temp.next;
       temp.next = null;
@@ -433,6 +434,21 @@ function deleteProp(list) {
   return list;
 }
 
+function detectLoop(list) {
+  var slow = list._head;
+  var fast = list._head;
+
+  while(fast !== null && fast.next !== null) {
+    slow = slow.next;
+    fast = fast.next.next;
+
+    if(slow === fast) {
+      return true;
+    }
+  }
+  return false;
+}
+
 
 var list = new LinkedList();
 var list2 = new LinkedList();
@@ -442,8 +458,8 @@ list.add('b');
 list.add('c');
 list.add('d');
 list.add('e');
-list.add('e');
 list.add('f');
+list.add('c');
 
 list2.add('b');
 list2.add('d');
@@ -452,7 +468,6 @@ list2.add('h');
 list2.add('j');
 list2.add('l');
 
-deleteProp(list);
-
+detectLoop(list);
 
 debugger;
