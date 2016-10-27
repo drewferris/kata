@@ -70,6 +70,17 @@ function preOrderTrav(root) {
   }
 }
 
-preOrderTrav(tree);
+function postOrderTrav(root) {
+  if(root.left) {
+    postOrderTrav(root.left);
+  }
+  if(root.right) {
+    postOrderTrav(root.right);
+  }
+  console.log(root.value);
+}
+
+postOrderTrav(tree);
+
 
 debugger;
