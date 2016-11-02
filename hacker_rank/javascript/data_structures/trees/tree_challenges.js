@@ -50,37 +50,94 @@ bst.push(6);
 
 var tree = {
   value: 3,
-  left:
-   { value: 5,
-     left: { value: 1, left: null, right: null },
-     right: {value: 4, left: null, right: null} },
-  right:
-   { value: 2,
-     left: {value: 6, left: null, right: null},
-     right: null }
+  left: {
+    value: 5,
+    left: {
+      value: 1,
+      left: null,
+      right: {
+        value: 9,
+        left: null,
+        right: null
+      }
+    },
+    right: {
+      value: 4,
+      left: null,
+      right: null
+    }
+  },
+  right: {
+    value: 2,
+    left: {
+      value: 6,
+      left: null,
+      right: null
+    },
+    right: {
+      value: 7,
+      left: {
+        value: 8,
+        left: null,
+        right: null
+      },
+      right: null
+    }
+  }
 };
 
 function preOrderTrav(root) {
   console.log(root.value);
-  if(root.left !== null) {
+  if (root.left !== null) {
     preOrderTrav(root.left);
   }
-  if(root.right !== null) {
+  if (root.right !== null) {
     preOrderTrav(root.right);
   }
 }
 
+
 function postOrderTrav(root) {
-  if(root.left) {
+  if (root.left) {
     postOrderTrav(root.left);
   }
-  if(root.right) {
+  if (root.right) {
     postOrderTrav(root.right);
   }
   console.log(root.value);
 }
 
-postOrderTrav(tree);
+
+function inOrderTrav(root) {
+  if (root.left) {
+    inOrderTrav(root.left);
+  }
+  console.log(root.value);
+  if (root.right) {
+    inOrderTrav(root.right);
+  }
+}
+
+function getHeight(root) {
+  if(root === null) {
+    return -1;
+  }
+
+  var leftH = getHeight(root.left);
+  var rightH = getHeight(root.right);
+
+  if(leftH > rightH) {
+    return leftH + 1;
+  } else {
+    return rightH + 1;
+  }
+}
+
+function topView(root) {
+  if(root.left)
+}
+
+getHeight(tree);
 
 
 debugger;
