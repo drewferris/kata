@@ -1,5 +1,4 @@
 function babyStepGiantStep(a, b, d) {
-  var count = 0;
   if(d === 0) {
     console.log(0);
     return;
