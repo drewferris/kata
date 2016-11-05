@@ -10,11 +10,10 @@ function completeString(string) {
     count++;
   });
   if(count === 26) {
-    ;new Promise(function(resolve, reject) {
-  
-    });
+    console.log('YES');
+  } else {
+    console.log('NO');
   }
-  debugger;
 }
 
 completeString('wyyga');
