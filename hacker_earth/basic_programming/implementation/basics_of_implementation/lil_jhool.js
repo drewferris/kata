@@ -18,4 +18,15 @@ function tellFut(bin) {
   console.log('Good luck!');
 }
 
-tellFut('1111010100010100101011101100101101110011000010100010000001111100010011100101010001101111000001011000');
+function lilJool(s) {
+  for(var i = 0; i + 6 <= s.length; i++) {
+    if(s[i] === s[i+1] && s[i] === s[i+2] && s[i] === s[i+3] && s[i] === s[i+4] && s[i] === s[i+5]) {
+      console.log('Sorry, sorry!');
+      return;
+    }
+  }
+  console.log('Good Luck');
+  return;
+}
+
+lilJool('1111010100010100101011101100101101110011000010100010000001111100010011100101010001101111000001011000');
