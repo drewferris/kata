@@ -77,9 +77,7 @@ function longStrSlide2(s) {
     }
     ans = Math.max(ans, j - i + 1);
     hashMap[s[j]] = j + 1;
-    debugger;
   }
-  debugger;
   return ans;
 }
 longStrSlide2('xxzqi');
