@@ -103,4 +103,27 @@ String.prototype.oneEditInsert = function(f, s) {
     return true;
 }
 
+String.prototype.oneEditAwayMod = function(f, s) {
+    if(Math.abs(f.length - s.length) > 1) return false;
+
+    var s1 = f.length < s.length ? f : s;
+    var s2 = f.length < s.length ? s : f;
+
+    var i = 0;
+    var j = 0;
+    var fd = false;
+    while(j < s2.length && i < s1.length) {
+        if(s1[i] !== s2[j]) {
+            if(fd) return false;
+            fd = true;
+
+            if(s1.length === s2.length) i++;
+        } else {
+            i++;
+        }
+        j++;
+    }
+    return true;
+}
+
 module.exports = String;

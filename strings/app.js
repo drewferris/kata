@@ -4,7 +4,7 @@ var String = require('./string');
 
 var s = new String();
 
-var c = s.oneEditAway('pale', 'bae');
+var c = s.oneEditAwayMod('pale', 'pala');
 
 
 console.log('debug');
