@@ -4,7 +4,7 @@ var String = require('./string');
 
 var s = new String();
 
-var c = s.oneEditAwayMod('pale', 'pala');
+var c = s.compression('aabcccccaaa');
 
 
 console.log('debug');

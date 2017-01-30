@@ -126,4 +126,20 @@ String.prototype.oneEditAwayMod = function(f, s) {
     return true;
 }
 
+String.prototype.compression = function(s) {
+    var r = '';
+    for(var i = 0; i < s.length; i++) {
+        var j = 1;
+        var c = 1;
+        while(s[i+j] && s[i] === s[i + j]) {
+            c++;
+            j++;
+        }
+        r = r + s[i] + c;
+        i += c - 1;
+    }
+
+    return r.length < s.length ? r : s;
+}
+
 module.exports = String;
